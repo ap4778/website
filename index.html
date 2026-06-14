@@ -110,13 +110,45 @@
   .faq-row { display:flex; justify-content:space-between; align-items:center; gap:16px; font-size:15px; }
   .faq-icon { width:32px; height:32px; border-radius:50%; background:#fff; color: var(--brown); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px; }
   .faq-item.open .faq-icon { background: var(--bg); }
-  .faq-answer { display:none; font-size:13px; margin-top:12px; opacity:.85; line-height:1.7; }
-  .faq-item.open .faq-answer { display:block; }
+  .faq-answer { font-size:13px; margin-top:12px; opacity:.85; line-height:1.7; }
+  .faq-item.open .faq-answer { /* handled by animation block below */ }
 
   /* FAQ sticky left panel */
   .faq-sticky {
     position: sticky;
     top: 100px;
+    align-self: start;
+  }
+
+  /* FAQ — each item slides in from the right on scroll */
+  .faq-item {
+    opacity: 0;
+    transform: translateX(60px) scale(.97);
+    transition:
+      opacity  .6s cubic-bezier(.22,1,.36,1),
+      transform .6s cubic-bezier(.22,1,.36,1),
+      background .35s ease,
+      box-shadow .3s;
+  }
+  .faq-item.faq-in {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  /* stagger delays per child */
+  .faq-item:nth-child(1) { transition-delay: .00s; }
+  .faq-item:nth-child(2) { transition-delay: .10s; }
+  .faq-item:nth-child(3) { transition-delay: .20s; }
+  .faq-item:nth-child(4) { transition-delay: .30s; }
+  .faq-item:nth-child(5) { transition-delay: .40s; }
+  .faq-item:nth-child(6) { transition-delay: .50s; }
+
+  /* hover nudge (only when already visible & not open) */
+  .faq-item.faq-in:hover:not(.open) {
+    transform: translateX(-5px) scale(1);
+    box-shadow: 5px 0 0 var(--accent) inset;
+  }
+  .faq-item.faq-in.open {
+    transform: translateX(0) scale(1);
   }
 
   /* CTA */
@@ -239,9 +271,12 @@
     max-height: 0;
     overflow: hidden;
     display: block !important;
-    transition: max-height .55s cubic-bezier(.22,1,.36,1), opacity .4s ease, margin-top .4s ease;
     opacity: 0;
     margin-top: 0;
+    transition:
+      max-height .5s cubic-bezier(.22,1,.36,1),
+      opacity    .4s ease,
+      margin-top .4s ease;
   }
   .faq-item.open .faq-answer {
     max-height: 400px;
@@ -249,35 +284,12 @@
     margin-top: 12px;
   }
 
-  /* FAQ scroll-in per item — slide from right */
-  .faq-item {
-    opacity: 0;
-    transform: translateX(56px) scale(.97);
-    transition:
-      opacity  .55s cubic-bezier(.22,1,.36,1),
-      transform .55s cubic-bezier(.22,1,.36,1),
-      background .35s ease,
-      box-shadow .3s;
+  /* icon rotate on open */
+  .faq-icon {
+    transition: transform .4s cubic-bezier(.34,1.56,.64,1),
+                background .3s, color .3s;
   }
-  .faq-item.faq-visible {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
-  /* keep hover & open states from fighting the transform */
-  .faq-item.faq-visible:hover:not(.open) {
-    transform: translateX(-4px) scale(1);
-    box-shadow: 4px 0 0 var(--accent) inset;
-  }
-  .faq-item.faq-visible.open {
-    transform: translateX(0) scale(1);
-  }
-
-  /* FAQ left panel sticky while items scroll */
-  .faq-sticky {
-    position: sticky;
-    top: 100px;
-    align-self: start;
-  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
 </style>
 </head>
 <body>
@@ -480,47 +492,47 @@
   <section id="faq" class="reveal">
     <div class="faq-grid">
       <div class="faq-sticky">
-        <p class="eyebrow">• FAQ</p>
         <h2>Frequently<br>Asked <span class="italic">Question?</span></h2>
         <button class="ghost-btn">Need A Help</button>
       </div>
       <div class="faq-list">
+        
       <div class="faq-item open" onclick="toggleFaq(this)">
         <div class="faq-row">
           <span>What sets your luxury listings apart?</span>
-          <span class="faq-icon">×</span>
+          <span class="faq-icon">−</span>
         </div>
         <p class="faq-answer">We curate and present exceptional residences defined by iconic architecture, prestigious locations, complete privacy, and timeless design crafted for refined living.</p>
       </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-item " onclick="toggleFaq(this)">
         <div class="faq-row">
           <span>Do you offer off-market or private listings?</span>
           <span class="faq-icon">+</span>
         </div>
         <p class="faq-answer">Yes — we maintain a discreet portfolio of off-market properties available only to qualified, vetted clients.</p>
       </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-item " onclick="toggleFaq(this)">
         <div class="faq-row">
           <span>Schedule a private property viewing?</span>
           <span class="faq-icon">+</span>
         </div>
         <p class="faq-answer">Absolutely. Contact our team and we'll arrange a private, accompanied tour at a time that suits you.</p>
       </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-item " onclick="toggleFaq(this)">
         <div class="faq-row">
           <span>Do you assist international buyers?</span>
           <span class="faq-icon">+</span>
         </div>
         <p class="faq-answer">We regularly guide international clients through cross-border purchases, financing, and legal requirements.</p>
       </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-item " onclick="toggleFaq(this)">
         <div class="faq-row">
           <span>Services beyond property sales?</span>
           <span class="faq-icon">+</span>
         </div>
         <p class="faq-answer">We also offer interior design consultation, property management, and renovation oversight.</p>
       </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-item " onclick="toggleFaq(this)">
         <div class="faq-row">
           <span>Luxury investment advice available?</span>
           <span class="faq-icon">+</span>
@@ -580,9 +592,20 @@ function toggleFaq(el) {
   });
   if (!isOpen) {
     el.classList.add('open');
-    el.querySelector('.faq-icon').textContent = '−';
+    el.querySelector('.faq-icon').textContent = '×';
   }
 }
+
+/* ── FAQ items scroll-in observer ── */
+const faqItems = document.querySelectorAll('.faq-item');
+const faqObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('faq-in');
+    }
+  });
+}, { threshold: 0.15 });
+faqItems.forEach(item => faqObserver.observe(item));
 
 /* ── Sticky header shadow on scroll ── */
 const stickyWrap = document.querySelector('.sticky-wrap');
