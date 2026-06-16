@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact Us — Estatia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #F7F1E8;
@@ -17,8 +20,8 @@
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--text); line-height:1.6; }
-  h1,h2,h3 { font-family: Georgia, 'Times New Roman', serif; font-weight:400; }
+  body { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--text); line-height:1.6; }
+  h1,h2,h3 { font-family: 'Playfair Display', Georgia, serif; font-weight:400; }
   .italic { font-style:italic; color: var(--accent); }
   a { text-decoration:none; color:inherit; }
   .container { max-width:1200px; margin:0 auto; padding:0 24px; }
@@ -38,7 +41,7 @@
   nav a::after { content:''; position:absolute; left:50%; bottom:-4px; width:0; height:1.5px; background:var(--brown); transition: width .35s, left .35s; }
   nav a:hover::after { width:100%; left:0; }
   nav a:hover { color: var(--brown); }
-  .logo { font-family:Georgia,serif; font-size:22px; letter-spacing:2px; display:flex; align-items:center; gap:8px; }
+  .logo { font-family:'Playfair Display',Georgia,serif; font-size:22px; letter-spacing:2px; display:flex; align-items:center; gap:8px; }
   .logo-badge { width:28px; height:28px; border:2px solid var(--brown); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; transition: transform .5s cubic-bezier(.34,1.56,.64,1); }
   .logo:hover .logo-badge { transform: rotate(360deg); }
   .btn { background:var(--brown); color:var(--bg); border:none; padding:12px 28px; border-radius:999px; font-size:14px; cursor:pointer; position:relative; overflow:hidden; transition: background .25s, transform .25s, box-shadow .25s; }
@@ -49,7 +52,7 @@
   /* HERO */
   .contact-hero { padding: 80px 0 60px; text-align: center; }
   .contact-hero .eyebrow { font-size:13px; color:var(--muted); margin-bottom:14px; letter-spacing:1px; }
-  .contact-hero h1 { font-size:56px; line-height:1.15; margin-bottom:20px; }
+  .contact-hero h1 { font-size:64px; line-height:1.15; margin-bottom:20px; }
   .contact-hero p { font-size:16px; color:var(--muted); max-width:500px; margin:0 auto; }
 
   /* CONTACT GRID */
